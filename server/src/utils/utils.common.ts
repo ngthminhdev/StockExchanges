@@ -32,5 +32,5 @@ export const convertToSlug = (str: string): string => {
 
 export const convertToNumber = (val: string) => {
     if (!val) return 0;
-    return parseInt(`${val}0`.replace(/,/g,'')) ;
+    return parseInt(`${val}0`.replace(/[,.]/g,'')) ;
 }
