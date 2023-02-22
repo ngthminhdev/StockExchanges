@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBrowserRouter , Navigate } from 'react-router-dom'
 import MainLayout from '../Layout/MainLayout'
-import { StockTable , AgreementTable , WarrantsTable } from '../Pages'
+import { StockTable , AgreementTable , WarrantsTable, SignIn } from '../Pages'
 
 export const router = createBrowserRouter([
   {
@@ -24,5 +24,9 @@ export const router = createBrowserRouter([
         element : <WarrantsTable/> ,//table
       }
     ] ,
+  } ,
+  {
+    path:'/login' ,
+    element : <SignIn/>
   }
 ])

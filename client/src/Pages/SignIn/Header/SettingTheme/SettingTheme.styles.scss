@@ -1,0 +1,61 @@
+$bGColorMain : #f5a122 ;
+
+.header__setting {
+    position: relative;
+}
+
+ .header__menu--theme {
+    position: absolute;
+    height: 96px;
+    width: 140px;
+    padding: 10px 0;
+    color: #7f8792;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    left: -57px;
+
+    .header__menu--title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+        margin-top: 4px;
+    }
+    form {
+        margin-top: 8px;
+        display: flex;
+        padding-left: 8px;
+        justify-content: space-between;
+
+        div {
+            margin-right: 20px;
+          label {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          }
+          input {
+            display: none;
+          }
+          input[type="radio"]:checked ~ .checkBoxWrapper .checkBox {
+            background-color: $bGColorMain;
+          }
+          .checkBoxWrapper {
+            display: flex;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            justify-content: center ;
+            align-items: center;
+            margin-right: 5px;
+          .checkBox {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: inherit;
+          }
+          }
+        }
+    }
+}
