@@ -1,3 +1,5 @@
+@use '../components/Message/Message.styles' ;
+
 * {
  margin: 0;
  padding: 0;
@@ -23,3 +25,4 @@ button {
   border: none;
   cursor: pointer;
 }
+

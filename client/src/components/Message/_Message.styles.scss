@@ -1,0 +1,60 @@
+#messageWrapper {
+    position: fixed;
+    top: 1rem;
+    width: 100%;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+}
+
+#messageContainer {
+    padding: 8px 4px;
+    margin-right: 40px;
+}
+
+@mixin messageBox() {
+    width: 300px;
+    height: 80px;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#messageContainer svg {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.typeTitle {
+    margin-bottom: 3px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.typeTitle ~ p {
+    font-size: 17px;
+}
+
+#messageContainer .Success {
+    background-color: #b7f7c4;
+    @include messageBox ;
+}
+
+#messageContainer .Info {
+    background-color: #b3e6f5;
+    @include messageBox ;
+}
+
+#messageContainer .Warning {
+    background-color: #fbe7c6;
+    @include messageBox ;
+}
+
+#messageContainer .Error {
+    background-color: #ffb7b6;
+    @include messageBox ;
+}
+

@@ -5,6 +5,7 @@ import InputForm from "./InputForm/InputForm";
 import SettingTheme from "./Header/SettingTheme/SettingTheme";
 import "./SignIn.styles.scss";
 import ButtonForm from "./ButtonForm/ButtonForm";
+import { infoMessage, successMessage , warningMessage , errorMessage } from "../../components/Message";
 
 const SignIn = () => {
 
@@ -12,7 +13,10 @@ const SignIn = () => {
 
   const handleSubmitForm = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault() ;
-    
+    successMessage("test message");
+    infoMessage("test") ;
+    warningMessage("test") ;
+    errorMessage("test") ;
   }
   
   return (
