@@ -1,8 +1,8 @@
-@use 'variables' ;
+@import "./variables" ;
 
 @mixin theme {
-    background-color: $bg-light-theme;
-    color: $text-light-theme;
+    background-color: $bg-dark-theme;
+    color: $text-dark-theme;
 }
 
 @mixin checkBockCircle {

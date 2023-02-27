@@ -5,11 +5,12 @@ interface Props {
   children : ReactNode ,
   handleClickBtn : Function ,
   variant : string ,
+  isDarkTheme?:boolean ,
 }
 
-const ButtonForm = ({ children , handleClickBtn , variant } : Props ) => {
+const ButtonForm = ({ children , handleClickBtn , variant , isDarkTheme } : Props ) => {
   return (
-    <button className={`btn ${ (variant ) == 'primary' ? 'primary' : 'second' }`} onClick={ (e) => { handleClickBtn(e) } }>
+    <button className={`btn ${ (variant ) == 'primary' ? 'primary' : 'second' } ${isDarkTheme ? 'dark' : ''}`} onClick={ (e) => { handleClickBtn(e) } }>
       {children}
     </button>
   )

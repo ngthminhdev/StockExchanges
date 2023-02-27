@@ -1,10 +1,14 @@
 import React from 'react'
 import "./CheckBoxLanguage.styles.scss"
 
-const CheckBoxLanguage = () => {
+interface Props {
+  handleChangeLangue : (e: React.ChangeEvent<HTMLInputElement>) => void ,
+}
+
+const CheckBoxLanguage = ({handleChangeLangue}:Props) => {
   return (
     <div id="checkbox">
-          <input type="checkbox" name="" id="languageCheckBox" />
+          <input onChange={handleChangeLangue} type="checkbox" name="" id="languageCheckBox" />
           <label htmlFor="languageCheckBox">
             <span className="english">EN</span>
             <span className="vietnam">VN</span>

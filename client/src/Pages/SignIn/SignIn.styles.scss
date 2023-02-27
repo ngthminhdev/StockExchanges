@@ -1,6 +1,10 @@
 @use '../../styles/abstracts/mixins' ;
 $ColorMain : #f5a122 ;
 
+.login__wrapper.darkTheme {
+   @include mixins.theme ;
+}
+
 header {
     padding: 10px 12px;
     border-bottom: 1px solid #c1c1c1!important;
@@ -8,8 +12,6 @@ header {
     justify-content: flex-end;
     height: 44px;
 }
-
-
 
 .content {
     display: flex ;

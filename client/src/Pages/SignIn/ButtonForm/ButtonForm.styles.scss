@@ -19,8 +19,12 @@ $bGColorMain : #f5a122 ;
 }
 
 .btn.second {
-    background-color: white;
+    background-color: inherit;
     color: $bGColorMain;
     border: 1px solid $bGColorMain;
     margin-top: 24px;
+}
+
+.btn.second.dark {
+    border-color: #fff;
 }
