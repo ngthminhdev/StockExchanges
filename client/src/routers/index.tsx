@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBrowserRouter , Navigate } from 'react-router-dom'
 import MainLayout from '../Layout/MainLayout'
-import { StockTable , AgreementTable , WarrantsTable, SignIn } from '../Pages'
+import { StockTable , AgreementTable , WarrantsTable, SignIn, SignUp } from '../Pages'
 
 export const router = createBrowserRouter([
   {
@@ -28,5 +28,9 @@ export const router = createBrowserRouter([
   {
     path:'/login' ,
     element : <SignIn/>
+  } ,
+  {
+    path : '/register' ,
+    element : <SignUp/>
   }
 ])

@@ -5,7 +5,7 @@ $ColorMain : #f5a122 ;
    @include mixins.theme ;
 }
 
-header {
+.header__login {
     padding: 10px 12px;
     border-bottom: 1px solid #c1c1c1!important;
     display: flex;

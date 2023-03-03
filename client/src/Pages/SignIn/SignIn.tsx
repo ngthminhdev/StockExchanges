@@ -7,6 +7,7 @@ import SettingTheme from "./Header/SettingTheme/SettingTheme";
 import { infoMessage, successMessage , warningMessage , errorMessage } from "../../components/Message";
 import { useTranslation } from "react-i18next";
 import "./SignIn.styles.scss";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
 
@@ -24,15 +25,11 @@ const SignIn = () => {
 
   const handleSubmitForm = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault() ;
-    successMessage("test message");
-    infoMessage("test") ;
-    warningMessage("test") ;
-    errorMessage("test") ;
   }
   
   return (
     <div style={{ height: "100vh" }} className={`login__wrapper ${darkTheme ? "darkTheme" : ''}`}>
-      <header>
+      <header className="header__login">
         <SettingTheme
         darkTheme={darkTheme}
         setDarkTheme={setDarkTheme}
@@ -44,7 +41,7 @@ const SignIn = () => {
         <form action="" className="content__form">
           <div style={{padding:'4px'}}>
           {
-            darkTheme ? <LogoTextDark/> :<LogoTextLight/>
+            darkTheme ? <LogoTextDark/> :<LogoTextLight width="227" height="59"/>
           }
           </div>
           <p className="content__form--title">{t("titleForm")}</p>
@@ -58,8 +55,10 @@ const SignIn = () => {
            placeHolder={t("passWord")}
            isInputPassWorld={true}
           />
-          <ButtonForm variant="primary" handleClickBtn={handleSubmitForm}>{t("btn1")}</ButtonForm>
-          <ButtonForm isDarkTheme={darkTheme} variant="second" handleClickBtn={()=>{ }}>{t("btn2")}</ButtonForm>
+          <ButtonForm width="100%" height="auto" variant="primary" handleClickBtn={handleSubmitForm}>{t("btn1")}</ButtonForm>
+          <Link to={'/register'} style={{width:'100%'}}>
+          <ButtonForm width="100%" height="auto" isDarkTheme={darkTheme} handleClickBtn={()=> {}} variant="second">{t("btn2")}</ButtonForm>
+          </Link>
           <div className="contact">
             <p className="link">{t("forgotPassWord")}</p>
             <p className="link" style={{textDecoration:'underline'}}>{t("help")}</p>
