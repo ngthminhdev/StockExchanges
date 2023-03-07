@@ -1,0 +1,45 @@
+.inputFile__wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    width: 100%;
+
+    .inputFile__label {
+        display: flex;
+        flex-direction: column;
+        justify-content: center ;
+        align-items: center;
+        width: 329px;
+        height: 206px;
+        border-radius: 0.5rem;
+        background-color: #F9F9F9;
+        border : 1px solid #A0A0A0;
+        font-weight: 500;
+        cursor: pointer;
+        img {
+            text-indent: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            border-radius: 0.5rem;
+            object-fit: cover;
+            object-position: center;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .inputFile__label:hover {
+        background-color: #E2E8F0;
+    }
+    .error__Input--img {
+        font-size: 12px;
+        color: #CC2222;
+        font-weight: 500;
+        margin-top: 8px;
+    }
+}
+

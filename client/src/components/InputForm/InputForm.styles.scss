@@ -21,7 +21,7 @@ $ColorMain : #f5a122 ;
     cursor: pointer;
 }
 
-input {
+.inputForm {
     padding: 8px 12px 8px 60px;
     width: 100%;
     border : 1px solid #808285 ;
@@ -31,10 +31,10 @@ input {
     outline: none;
 }
 
-input::placeholder {
+.inputForm::placeholder {
     font-size: 16px;
 }
 
-input:focus {
-    border:1px solid $ColorMain;
+.inputForm:focus {
+    border:1px solid $ColorMain !important;
 }

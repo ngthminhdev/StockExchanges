@@ -1,0 +1,52 @@
+.form__register--infomation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .title {
+        font-size: 20px;
+        color: #F5A122;
+        font-weight: 500;
+        line-height: 30px;
+    }
+    .subTitle {
+        font-size: 14px;
+        color: #282828;
+    }
+    .inputRegister__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .inputContainer {
+            display: flex;
+            flex-direction: column;
+            .error__Input--formInfomation {
+                margin-top: -20px;
+                font-size: 12px;
+                color: #CC2222;
+                margin-bottom: 20px;
+                font-weight: 500;
+            }
+        }
+    }
+    .checkBox__container {
+        cursor: pointer;
+        min-width: 16px ;
+        width: 16px;
+        height: 16px;
+        border : 1px solid rgb(100, 100, 100) ;
+        border-radius: 0.125rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: transparent;
+        margin-right: 8px;
+    }
+    .checkBox__container:focus {
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+    }
+    .checkBox__rules:checked ~ .checkBox__container {
+        background-color: #F5A122;
+        color: white;
+        border: none;
+    }
+}

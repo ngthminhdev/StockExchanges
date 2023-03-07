@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { LockIcon, LogoTextDark, LogoTextLight, UserIcon } from "../../components/icons";
+import { ButtonForm , CustomeInput, } from "../../components";
 import CheckBoxLanguage from "./Header/CheckBoxLanguage/CheckBoxLanguage";
-import InputForm from "./InputForm/InputForm";
-import ButtonForm from "./ButtonForm/ButtonForm";
 import SettingTheme from "./Header/SettingTheme/SettingTheme";
-import { infoMessage, successMessage , warningMessage , errorMessage } from "../../components/Message";
+import { successMessage , errorMessage } from "../../components/Message";
 import { useTranslation } from "react-i18next";
-import "./SignIn.styles.scss";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { IFormValues } from "../../components/InputForm/InputForm";
+import "./SignIn.styles.scss";
 
 const SignIn = () => {
-
+  const { register , handleSubmit } = useForm<IFormValues>() ;
   const [ darkTheme , setDarkTheme ] = useState<boolean>(false) ;
   const [ t , i18n ] = useTranslation() ;
 
@@ -23,7 +24,7 @@ const SignIn = () => {
      }
   }
 
-  const handleSubmitForm = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault() ;
   }
   
@@ -38,26 +39,26 @@ const SignIn = () => {
       </header>
       <div className="content">
         <div className="content__img"></div>
-        <form action="" className="content__form">
+        <form onSubmit={(e) => handleSubmitForm(e)} action="" className="content__form">
           <div style={{padding:'4px'}}>
           {
             darkTheme ? <LogoTextDark/> :<LogoTextLight width="227" height="59"/>
           }
           </div>
           <p className="content__form--title">{t("titleForm")}</p>
-          <InputForm 
+          <CustomeInput 
            icon={<UserIcon/>}
            placeHolder={t("userName")}
-           isInputPassWorld={false}
+           type={'text'} 
           />
-          <InputForm 
+          <CustomeInput 
            icon={<LockIcon/>}
            placeHolder={t("passWord")}
-           isInputPassWorld={true}
+           type={'password'}
           />
-          <ButtonForm width="100%" height="auto" variant="primary" handleClickBtn={handleSubmitForm}>{t("btn1")}</ButtonForm>
-          <Link to={'/register'} style={{width:'100%'}}>
-          <ButtonForm width="100%" height="auto" isDarkTheme={darkTheme} handleClickBtn={()=> {}} variant="second">{t("btn2")}</ButtonForm>
+          <ButtonForm styles={{lineHeight:'24px'}} width="100%" height="auto" variant="primary" handleClickBtn={handleSubmitForm}>{t("btn1")}</ButtonForm>
+          <Link to={'/register'} style={{width:'100%', textDecoration:'none'}}>
+          <ButtonForm styles={{lineHeight:'24px'}} width="100%" height="auto" isDarkTheme={darkTheme} handleClickBtn={()=> {}} variant="second">{t("btn2")}</ButtonForm>
           </Link>
           <div className="contact">
             <p className="link">{t("forgotPassWord")}</p>

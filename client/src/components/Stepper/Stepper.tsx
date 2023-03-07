@@ -15,7 +15,7 @@ const Stepper = ({ listSteps , activeStep }: Props) => {
   return (
     <div className="stepper__wrapper">
       {listSteps.map( ( step , index ) => (
-        <div className={`stepper__item ${ isCompleted(activeStep , index + 1) && 'active' }`} style={{width:`${withPerStep}%`}}>
+        <div key={index} className={`stepper__item ${ isCompleted(activeStep , index + 1) && 'active' }`} style={{width:`${withPerStep}%`}}>
           <div className={`stepper__step ${ isProcessAndCompleted(activeStep , index + 1) && 'active' }`}>{ step.icon ? step.icon : index}</div>
           <div className={`stepper__label ${ isProcessAndCompleted(activeStep , index + 1) && 'active' }`}>{step.label}</div>
         </div>

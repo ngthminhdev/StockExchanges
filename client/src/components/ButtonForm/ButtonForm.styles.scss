@@ -5,7 +5,9 @@ $bGColorMain : #f5a122 ;
     font-size: 15px;
     font-weight: bold;
     border-radius: 5px;
-    line-height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn:hover {
