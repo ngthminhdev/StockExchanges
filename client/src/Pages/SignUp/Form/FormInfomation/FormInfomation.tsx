@@ -8,9 +8,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "./FormInfomation.styles.scss";
 import { inputFormMapping } from "./type";
+import { IUser } from "../../../../interface";
 
 interface Props {
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+  setUserData : React.Dispatch<React.SetStateAction<IUser | undefined>> ,
 }
 
 const schema = yup
@@ -28,8 +30,7 @@ const schema = yup
 
 type FormData = yup.InferType<typeof schema>;
 
-const FormInfomation = ({ setActiveStep }: Props) => {
-  const [checkedInput, setCheckedInput] = useState<boolean>(false);
+const FormInfomation = ({ setActiveStep , setUserData }: Props) => {
 
   const {
     handleSubmit,
@@ -91,7 +92,11 @@ const FormInfomation = ({ setActiveStep }: Props) => {
     },
   ];
 
+  // const jwt = require("jsonwebtoken") ;
+  // const secretKey = 
+
   const handleSubmitForm: SubmitHandler<IFormValues> = (data: FormData ) => {
+    setUserData(data) ;
     setActiveStep( prev => prev + 1 ) ;
   };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Stepper } from "../../components";
 import {
   IndentityIcon,
@@ -9,12 +9,13 @@ import {
   SignIcon,
   TowerRegister,
 } from "../../components/icons";
-import { ButtonForm } from "../../components"
 import { FormContract, FormIdentityUpload, FormInfomation } from "./Form";
+import { IUser } from "../../interface";
 import "./SignUp.styles.scss";
 
 const SignUp = () => {
   const [activeStep, setActiveStep] = useState<number>(1);
+  const [userData , setUserData] = useState<IUser>() ;
 
   const listSteps = [
     {
@@ -32,21 +33,10 @@ const SignUp = () => {
   ];
 
   const stepForm = [
-    { component: <FormInfomation setActiveStep={setActiveStep} /> },
+    { component: <FormInfomation setActiveStep={setActiveStep} setUserData={setUserData}/> },
     { component: <FormIdentityUpload setActiveStep={setActiveStep} /> },
     { component: <FormContract setActiveStep={setActiveStep} /> },
   ];
-
-  const handleSubmitForm = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    if (activeStep == 3) {
-    } else {
-      setActiveStep((prev) => prev + 1);
-    }
-  };
-
-  console.log(activeStep) ;
 
   return (
     <div>
@@ -109,7 +99,7 @@ const SignUp = () => {
           <Stepper listSteps={listSteps} activeStep={activeStep} />
           <div style={{width:'100%'}}>
           <div style={{paddingInline:'8%', marginTop:'24px'}}>
-           { stepForm[activeStep-1].component }
+           { stepForm[ activeStep - 1 ].component }
           </div>
           </div>
         </div>

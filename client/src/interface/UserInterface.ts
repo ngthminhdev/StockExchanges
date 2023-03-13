@@ -1,4 +1,6 @@
 export interface IUser {
-    name : string ,
+    fullName : string ,
+    userName : string ,
+    phoneNumber : string ,
     email : string ,
 }

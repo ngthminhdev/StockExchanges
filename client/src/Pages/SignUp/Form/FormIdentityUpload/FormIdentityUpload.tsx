@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SubmitHandler } from "react-hook-form/dist/types/form";
 import { ButtonForm } from "../../../../components";
@@ -14,29 +14,69 @@ interface IdentityForm {
   frontImage: string;
 }
 
+interface ImageIdentity {
+  imgType: string ,
+  imgUrl: string,
+}
+
 const FormIdentityUpload = ({ setActiveStep }: Props) => {
-  const [imagesPreview, setImagesPreview] = useState<string[]>([]);
+  const [imagesPreview, setImagesPreview] = useState<ImageIdentity[]>([]);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IdentityForm>();
 
+  console.log(imagesPreview) ;
+
+  const getImage = ( imageType : string ) => {
+     return imagesPreview.find(
+      (image) => image.imgType == imageType
+    );
+  }
+
   const handleChangePicture = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files && e.target.files[0] ;
-    if ( file ) {
-      const fileUrl = URL.createObjectURL(file) ;
-      console.log(fileUrl) ;
-    }
+      const typeImage = e.target.id ;
+      let beforePicture = getImage(typeImage) ;
+      if (beforePicture) {
+        URL.revokeObjectURL(beforePicture.imgUrl);
+      }
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        const fileUrl = URL.createObjectURL(file);
+        console.log(fileUrl);
+        if ( beforePicture ) {
+          setImagesPreview((prev) =>
+            prev.map((img) => {
+              if (img.imgType == typeImage) {
+                img.imgUrl = fileUrl;
+              }
+              return img;
+            })
+          );
+        } else {
+          setImagesPreview((prev) => [
+            ...prev,
+            { imgType: typeImage, imgUrl: fileUrl },
+          ]);
+        }
+      }
   };
 
   const handleSubmitForm: SubmitHandler<IdentityForm> = (data) => {
     setActiveStep((prev) => prev + 1);
-  }; 
+  };
 
-  const productImageField = {...register("frontImage" , { required : true })} ;
-
-  console.log(errors);
+  useEffect( () => {
+   const handleRemoveImageUrl = () => {
+    imagesPreview.forEach ( (img) => {
+       URL.revokeObjectURL(img.imgUrl) ;
+    } )
+   }
+   return () => {
+    handleRemoveImageUrl() ;
+   }
+  } , [] )
 
   return (
     <form
@@ -56,12 +96,15 @@ const FormIdentityUpload = ({ setActiveStep }: Props) => {
               Hình ảnh chụp trực diện và rõ nét thông tin
             </p>
             <AddImageIcon />
-            <img src="" alt="" />
+            <img src={getImage("frontImage")?.imgUrl} alt="" />
             <input
               type="file"
               id="frontImage"
-              {...productImageField }
-              onChange={ (e) => { handleChangePicture(e) } }
+              style={{ display: "none" }}
+              { ...register("frontImage", { required: true }) }
+              onChange={(e) => {
+                handleChangePicture(e);
+              }}
             />
           </label>
           {errors.frontImage && (
@@ -75,11 +118,15 @@ const FormIdentityUpload = ({ setActiveStep }: Props) => {
               Hình ảnh chụp trực diện và rõ nét thông tin
             </p>
             <AddImageIcon />
-            <img src="" alt="" />
+            <img src={getImage("backsideImage")?.imgUrl} alt="" />
             <input
               type="file"
               id="backsideImage"
+              style={{ display: "none" }}
               {...register("backsideImage", { required: true })}
+              onChange={(e) => {
+                handleChangePicture(e);
+              }}
             />
           </label>
           {errors.backsideImage && (
