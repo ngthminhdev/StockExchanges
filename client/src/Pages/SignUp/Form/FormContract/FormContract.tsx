@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ButtonForm } from "../../../../components";
 import { AgreeIcon } from "../../../../components/icons";
 import "./FormContract.styles.scss";
+import * as jose from "jose"
 
 interface Props {
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
@@ -17,7 +18,15 @@ const FormContract = ({ setActiveStep }: Props) => {
   const { register , handleSubmit ,formState : {errors} } = useForm<FormContract>() ;
 
   console.log(errors)
-  const handleSubmitForm:SubmitHandler<FormContract> = (data) => {
+  const handleSubmitForm:SubmitHandler<FormContract> = async (data) => {
+    // try {
+    //   const { payload, protectedHeader } = await jose.jwtVerify(jwt, secret)  
+    //   console.log(protectedHeader)
+    //   console.log(payload)
+
+    //   } catch (error) {
+    //     console.log('something errors') ;
+    //   }
     console.log(data) ;
   };
 

@@ -9,10 +9,13 @@ import * as yup from "yup";
 import "./FormInfomation.styles.scss";
 import { inputFormMapping } from "./type";
 import { IUser } from "../../../../interface";
+import {useCryptoGraphic} from "../../../../hook";
+
 
 interface Props {
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
-  setUserData : React.Dispatch<React.SetStateAction<IUser | undefined>> ,
+  setUserData: React.Dispatch<React.SetStateAction<IUser>>;
+  userData: IUser;
 }
 
 const schema = yup
@@ -30,24 +33,21 @@ const schema = yup
 
 type FormData = yup.InferType<typeof schema>;
 
-const FormInfomation = ({ setActiveStep , setUserData }: Props) => {
-
+const FormInfomation = ({
+  setActiveStep,
+  setUserData,
+  userData,
+}: Props) => {
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm<IFormValues>({
     resolver: yupResolver(schema),
-    defaultValues: {
-      fullName: "",
-      userName: "",
-      phoneNumber: "",
-      email: "",
-      password: "",
-      repeatPassword: "",
-      rules: false,
-    },
+    defaultValues: userData,
   });
+
+  const { enCode , deCode } = useCryptoGraphic() ;
 
   const errorsField = [
     {
@@ -92,12 +92,15 @@ const FormInfomation = ({ setActiveStep , setUserData }: Props) => {
     },
   ];
 
-  // const jwt = require("jsonwebtoken") ;
-  // const secretKey = 
-
-  const handleSubmitForm: SubmitHandler<IFormValues> = (data: FormData ) => {
-    setUserData(data) ;
-    setActiveStep( prev => prev + 1 ) ;
+  const handleSubmitForm: SubmitHandler<IFormValues> = async (
+    data: FormData
+  ) => {
+    const encodedRegisterData = enCode(data) ;
+    localStorage.setItem("vnd-register-data", JSON.stringify(encodedRegisterData) ) ;
+    setActiveStep((prev) => {
+     localStorage.setItem("vnd-register-step", JSON.stringify(prev+1) ) ;
+     return prev + 1;
+    });
   };
 
   const inputFormMapping: inputFormMapping[] = [
@@ -132,6 +135,14 @@ const FormInfomation = ({ setActiveStep , setUserData }: Props) => {
       type: "password",
     },
   ];
+
+  useEffect( () => {
+    const encodedString = localStorage.getItem("vnd-register-data") ;
+    if ( encodedString ) {
+      const data = deCode( JSON.parse(encodedString) ) ;
+      setUserData(data) ;
+    }
+  } , [] )
 
   return (
     <form

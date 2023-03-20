@@ -12,10 +12,23 @@ import {
 import { FormContract, FormIdentityUpload, FormInfomation } from "./Form";
 import { IUser } from "../../interface";
 import "./SignUp.styles.scss";
+import { confirmBox } from "../../components/ConfirmBox";
 
 const SignUp = () => {
   const [activeStep, setActiveStep] = useState<number>(1);
-  const [userData , setUserData] = useState<IUser>() ;
+  const [userData, setUserData] = useState<IUser>({
+    fullName: "",
+    userName: "",
+    phoneNumber: "",
+    email: "",
+    password: "",
+    repeatPassword: "",
+    rules: false,
+  });
+
+  const secret = new TextEncoder().encode(
+    "cc7e0d44fd473002f1c42167459001140ec6389b7353f8088f4d9a95f2f596f2"
+  );
 
   const listSteps = [
     {
@@ -33,10 +46,37 @@ const SignUp = () => {
   ];
 
   const stepForm = [
-    { component: <FormInfomation setActiveStep={setActiveStep} setUserData={setUserData}/> },
+    {
+      component: (
+        <FormInfomation
+          setActiveStep={setActiveStep}
+          setUserData={setUserData}
+          userData={userData}
+        />
+      ),
+    },
     { component: <FormIdentityUpload setActiveStep={setActiveStep} /> },
     { component: <FormContract setActiveStep={setActiveStep} /> },
   ];
+
+  useEffect(() => {
+    const step = localStorage.getItem("vnd-register-step");
+    if (step) {
+      if (+step != 1) {
+        confirmBox({
+          message:
+            "Bạn có muốn tiếp tục quá trình đăng ký lần trước hay không ?",
+          yes : () => { 
+            setActiveStep(+step) ;
+           } ,
+          no : () => {
+            localStorage.removeItem("vnd-register-step") ;
+            localStorage.removeItem("vnd-register-data") ;
+          }
+        });
+      }
+    }
+  }, []);
 
   return (
     <div>
@@ -97,10 +137,10 @@ const SignUp = () => {
         </div>
         <div className="content__form--register">
           <Stepper listSteps={listSteps} activeStep={activeStep} />
-          <div style={{width:'100%'}}>
-          <div style={{paddingInline:'8%', marginTop:'24px'}}>
-           { stepForm[ activeStep - 1 ].component }
-          </div>
+          <div style={{ width: "100%" }}>
+            <div style={{ paddingInline: "8%", marginTop: "24px" }}>
+              {stepForm[activeStep - 1].component}
+            </div>
           </div>
         </div>
       </div>

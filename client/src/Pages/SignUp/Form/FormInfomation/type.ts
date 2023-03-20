@@ -4,3 +4,4 @@ export interface inputFormMapping {
     id : labelInput ,
     type : string ,
 }
+

@@ -62,7 +62,8 @@ const FormIdentityUpload = ({ setActiveStep }: Props) => {
         }
       }
   };
-
+  
+  //console.log( JSON.stringify( localStorage.getItem("vnd-register-data") ) );
   const handleSubmitForm: SubmitHandler<IdentityForm> = (data) => {
     setActiveStep((prev) => prev + 1);
   };
@@ -134,6 +135,7 @@ const FormIdentityUpload = ({ setActiveStep }: Props) => {
           )}
         </div>
       </div>
+      <button onClick={ () => { setActiveStep( prev => prev - 1 ) } }>Trở về</button>
       <ButtonForm
         width="210px"
         height="32px"
