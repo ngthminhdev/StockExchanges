@@ -1,0 +1,40 @@
+$ColorMain : #f5a122 ;
+
+.inputWrapper {
+    width: 100%;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.iconInput {
+    position: absolute;
+    margin-left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+.iconInput.right {
+    right: 0;
+    left: auto;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.inputForm {
+    padding: 8px 12px 8px 60px;
+    width: 100%;
+    border : 1px solid #808285 ;
+    border-radius: 0.25rem;
+    height: 41px;
+    font-size: 16px;
+    outline: none;
+}
+
+.inputForm::placeholder {
+    font-size: 16px;
+}
+
+.inputForm:focus {
+    border:1px solid $ColorMain !important;
+}

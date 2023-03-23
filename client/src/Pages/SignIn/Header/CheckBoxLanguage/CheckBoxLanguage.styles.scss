@@ -1,0 +1,53 @@
+@use '../../../../styles/abstracts/mixins' ;
+
+#checkbox {
+
+    margin:0 8px ;
+    width: fit-content;
+
+    input {
+        display: none;
+    }
+
+    input:checked ~ label::after {
+        right: 1px;
+        left: calc(100% - 19px);
+        background-image: url("../../../../../public/imgs/EN.png");
+        @include mixins.checkBockCircle ;
+    }
+
+    input:checked ~ label .english {
+        opacity: 1;
+    }
+
+    input:checked ~ label .vietnam {
+        opacity: 0;
+    }
+
+    label {
+        display: flex;
+        position: relative;
+        justify-content: space-around;
+        font-size: 12px;
+        align-items: center;
+        padding: 0 4px;
+        width: 54px;
+        height: 22px;
+        transition: all 0.3s linear 0s;
+        color: #8b8a92;
+        border: 1px solid #8b8a92!important;
+        border-radius: 50rem;
+        cursor: pointer;
+
+      & .english {
+        opacity: 0;
+      }
+    } 
+
+    label::after {
+    left: 1px;
+    background-image: url("../../../../../public/imgs/vn.png");
+    @include mixins.checkBockCircle ;
+    }
+    
+}

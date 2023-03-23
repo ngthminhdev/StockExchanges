@@ -1,0 +1,18 @@
+@import "./variables" ;
+
+@mixin theme {
+    background-color: $bg-dark-theme;
+    color: $text-dark-theme;
+}
+
+@mixin checkBockCircle {
+    position: absolute;
+    content: "";
+    top: 1px;
+    bottom: 1px;
+    width: 18px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: left 0.3s ease-out 0s;
+}

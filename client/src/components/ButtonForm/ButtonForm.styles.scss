@@ -1,0 +1,31 @@
+$bGColorMain : #f5a122 ;
+
+.btn {
+    padding: 8px 12px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn.primary {
+    background-color: $bGColorMain;
+    color: white;
+}
+
+.btn.second {
+    background-color: inherit;
+    color: $bGColorMain;
+    border: 1px solid $bGColorMain;
+    margin-top: 24px;
+}
+
+.btn.second.dark {
+    border-color: #fff;
+}

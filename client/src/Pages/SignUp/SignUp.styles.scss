@@ -1,0 +1,90 @@
+.header__register {
+    padding-inline: 10%;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    .header__img {
+        background-image: url("../../../public/imgs/logoHeaderRegister.png");
+        height: 40px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .header__contact--wrapper {
+        display: flex;
+        align-items: center;
+        .header__contact {
+            display: flex;
+            align-items: center;
+            .header__contact--icon {
+                height: 24px;
+                width: 24px;
+                margin: 0 8px 0 16px;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            .header__contact--icon.setting {
+                background-image: url("../../../public/imgs/usageRegister.png");
+            }
+            .header__contact--icon.support {
+                background-image: url("../../../public/imgs/callRegister.png");
+            }
+            .header__contact--text {
+                font-size: 12px;
+                color: #646464;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+        }
+    }
+}
+
+.content__register {
+    padding-inline: 10%;
+    padding-top: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    .content__left {
+        width: 280px;
+        height: fit-content;
+        padding: 24px 16px;
+        margin-right: 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #FEEBC8;
+        border-radius: 0.75rem;
+        box-shadow:  0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .title {
+            margin-bottom: 16px;
+        }
+        .content__note {
+            display: flex;
+            margin-top: 16px;
+            align-items: center;
+            .content__note--text {
+                font-size: 11px ;
+                color: #444444;
+                margin-left: 8px;
+                color: rgb(68, 68, 68);
+                font-weight: 500;
+            }
+        }
+    }
+    .content__form--register {
+        flex : 1 ;
+        padding: 16px 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #FFFFFF;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        margin-bottom: 16px;
+    }
+}
