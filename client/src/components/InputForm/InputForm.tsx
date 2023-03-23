@@ -11,7 +11,7 @@ export interface IFormValues {
   email :string ,
   password :string ,
   repeatPassword :string ,
-  rules : boolean ,
+  rules ?: boolean ,
 }
 
 interface Props {

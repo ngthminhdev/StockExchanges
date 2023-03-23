@@ -5,6 +5,7 @@
     width: 100%;
 
     .inputFile__label {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center ;
@@ -41,5 +42,9 @@
         font-weight: 500;
         margin-top: 8px;
     }
+}
+
+.buttons__wrapper {
+   display: flex;
 }
 

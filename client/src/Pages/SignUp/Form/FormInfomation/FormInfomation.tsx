@@ -9,8 +9,7 @@ import * as yup from "yup";
 import "./FormInfomation.styles.scss";
 import { inputFormMapping } from "./type";
 import { IUser } from "../../../../interface";
-import {useCryptoGraphic} from "../../../../hook";
-
+import { useCryptoGraphic } from "../../../../hook";
 
 interface Props {
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
@@ -18,36 +17,44 @@ interface Props {
   userData: IUser;
 }
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 const schema = yup
   .object()
   .shape({
-    fullName: yup.string().required("Vui lòng nhập họ và tên"),
-    userName: yup.string().required("Vui lòng nhập tên đăng nhập"),
-    phoneNumber: yup.string().required("Vui lòng nhập số điện thoại"),
-    email: yup.string().required("Vui lòng nhập email"),
-    password: yup.string().required("Vui lòng nhập mật khẩu"),
-    repeatPassword: yup.string().required("Vui lòng nhập mật khẩu nhập lại"),
+    fullName: yup
+      .string()
+      .required("Vui lòng nhập họ và tên")
+      .min(4, "Vui lòng nhập tối thiểu 4 ký tự"),
+    userName: yup
+      .string()
+      .required("Vui lòng nhập tên đăng nhập")
+      .min(4, "Vui lòng nhập tối thiểu 4 ký tự"),
+    phoneNumber: yup
+      .string()
+      .required("Vui lòng nhập số điện thoại")
+      .matches(phoneRegExp, "Số điện thoại không hợp lệ"),
+    email: yup.string().required("Vui lòng nhập email").email("Email không hợp lệ"),
+    password: yup.string().required("Vui lòng nhập mật khẩu").min(8,"Vui lòng nhập tối thiểu 8 ký tự"),
+    repeatPassword: yup.string().required("Vui lòng nhập mật khẩu nhập lại").min(8,"Vui lòng nhập tối thiểu 8 ký tự").oneOf([yup.ref("password")] , "Khác với mật khẩu đăng ký"),
     rules: yup.bool().oneOf([true], "Vui lòng bấm xác nhận"),
   })
   .required();
 
 type FormData = yup.InferType<typeof schema>;
 
-const FormInfomation = ({
-  setActiveStep,
-  setUserData,
-  userData,
-}: Props) => {
+const FormInfomation = ({ setActiveStep, setUserData, userData }: Props) => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<IFormValues>({
     resolver: yupResolver(schema),
     defaultValues: userData,
   });
 
-  const { enCode , deCode } = useCryptoGraphic() ;
+  const { enCode, deCode } = useCryptoGraphic();
 
   const errorsField = [
     {
@@ -95,11 +102,17 @@ const FormInfomation = ({
   const handleSubmitForm: SubmitHandler<IFormValues> = async (
     data: FormData
   ) => {
-    const encodedRegisterData = enCode(data) ;
-    localStorage.setItem("vnd-register-data", JSON.stringify(encodedRegisterData) ) ;
+    if (isDirty) {
+      const newData = { ...userData, ...data };
+      const encodedRegisterData = enCode(newData);
+      localStorage.setItem(
+        "vnd-register-data",
+        JSON.stringify(encodedRegisterData)
+      );
+    }
     setActiveStep((prev) => {
-     localStorage.setItem("vnd-register-step", JSON.stringify(prev+1) ) ;
-     return prev + 1;
+      localStorage.setItem("vnd-register-step", JSON.stringify(prev + 1));
+      return prev + 1;
     });
   };
 
@@ -136,13 +149,13 @@ const FormInfomation = ({
     },
   ];
 
-  useEffect( () => {
-    const encodedString = localStorage.getItem("vnd-register-data") ;
-    if ( encodedString ) {
-      const data = deCode( JSON.parse(encodedString) ) ;
-      setUserData(data) ;
+  useEffect(() => {
+    const encodedString = localStorage.getItem("vnd-register-data");
+    if (encodedString) {
+      const data = deCode(JSON.parse(encodedString));
+      setUserData(data);
     }
-  } , [] )
+  }, []);
 
   return (
     <form
