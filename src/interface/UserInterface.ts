@@ -1,3 +1,5 @@
+import { ImageIdentity } from "../Pages/SignUp/Form/FormIdentityUpload/FormIdentityUpload";
+
 export interface IUser {
     fullName : string ,
     userName : string ,
@@ -6,4 +8,5 @@ export interface IUser {
     email : string ,
     repeatPassword?:string ,
     rules?:boolean ,
+    imageIdentity : ImageIdentity[] ,
 }

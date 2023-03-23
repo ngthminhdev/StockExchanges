@@ -3,39 +3,48 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ButtonForm } from "../../../../components";
 import { AgreeIcon } from "../../../../components/icons";
 import "./FormContract.styles.scss";
-import * as jose from "jose"
 
 interface Props {
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface FormContract {
-   acceptContract : boolean , 
+  acceptContract: boolean;
 }
 
 const FormContract = ({ setActiveStep }: Props) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormContract>();
 
-  const { register , handleSubmit ,formState : {errors} } = useForm<FormContract>() ;
-
-  console.log(errors)
-  const handleSubmitForm:SubmitHandler<FormContract> = async (data) => {
-    // try {
-    //   const { payload, protectedHeader } = await jose.jwtVerify(jwt, secret)  
-    //   console.log(protectedHeader)
-    //   console.log(payload)
-
-    //   } catch (error) {
-    //     console.log('something errors') ;
-    //   }
-    console.log(data) ;
+  console.log(errors);
+  const handleSubmitForm: SubmitHandler<FormContract> = async (data) => {
+    console.log(data);
   };
 
   return (
-    <form onSubmit={handleSubmit(handleSubmitForm)} className="form__register--infomation">
+    <form
+      onSubmit={handleSubmit(handleSubmitForm)}
+      className="form__register--infomation"
+    >
       <p className="title">HỢP ĐỒNG MỞ TÀI KHOẢN</p>
-      <iframe src="https://www.vndirect.com.vn/cmsupload/beta/HD-Mo-tai-khoan_25102021.pdf" style={{border:"0px #ffffff none", marginTop:'24px',}} name="myiFrame" scrolling="yes" height="345px" width="716px"></iframe>
+      <iframe
+        src="https://www.vndirect.com.vn/cmsupload/beta/HD-Mo-tai-khoan_25102021.pdf"
+        style={{ border: "0px #ffffff none", marginTop: "24px" }}
+        name="myiFrame"
+        scrolling="yes"
+        height="345px"
+        width="716px"
+      ></iframe>
       <label
-        style={{ display: "flex", alignItems: "flex-start" , width:'100%' , marginTop:'24px' }}
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          width: "100%",
+          marginTop: "24px",
+        }}
         htmlFor="rules"
       >
         <input
@@ -43,7 +52,7 @@ const FormContract = ({ setActiveStep }: Props) => {
           className="checkBox__rules"
           type="checkbox"
           id="rules"
-          {...register("acceptContract" , { required : true })}
+          {...register("acceptContract", { required: true })}
         />
         <span className="checkBox__container">
           <AgreeIcon />
@@ -53,19 +62,39 @@ const FormContract = ({ setActiveStep }: Props) => {
         </p>
       </label>
       {errors.acceptContract && (
-            <p className="error__Input--checkBox">Vui lòng bấm chọn đồng ý trước khi tiếp tục</p>
-          )}
-      <ButtonForm
-        width="210px"
-        height="32px"
-        handleClickBtn={handleSubmitForm}
-        variant="primary"
-        styles={{
-          marginTop: "32px",
-        }}
-      >
-        Tiếp tục
-      </ButtonForm>
+        <p className="error__Input--checkBox">
+          Vui lòng bấm chọn đồng ý trước khi tiếp tục
+        </p>
+      )}
+      <div className="buttons__wrapper">
+        <ButtonForm
+          width="210px"
+          height="32px"
+          variant="second"
+          styles={{
+            margin: "32px 0",
+          }}
+          type={"button"}
+          handleClickBtn={() => {
+            setActiveStep( prev => { 
+              localStorage.setItem("vnd-register-step", JSON.stringify(prev-1) ) ;
+              return prev - 1 ;
+            } );
+          }}
+        >
+          Trở về
+        </ButtonForm>
+        <ButtonForm
+          width="210px"
+          height="32px"
+          variant="primary"
+          styles={{
+            margin: "32px 0 32px 20px",
+          }}
+        >
+          Tiếp tục
+        </ButtonForm>
+      </div>
     </form>
   );
 };
