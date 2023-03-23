@@ -1,0 +1,39 @@
+.confirmBox__container {
+    background-color: white;
+    height: fit-content;
+    border-radius: 0.375rem;
+    padding: 0 24px;
+    .confirmBox__container--message {
+        padding: 8px 0;
+        margin-top: 16px;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .confirmBox__buttons {
+        padding: 16px 0;
+        display: flex;
+        justify-content: center;
+        .confirmBox__button {
+            padding: 0 32px;
+            height: 2rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+        }
+        .confirmBox__button:hover {
+            opacity: 0.8;
+        }
+        .confirmBox__button.cancle {
+            background-color: #EDF2F7;
+        }
+        .confirmBox__button.confirm {
+            background-color: #F5A122;
+            margin-left: 12px;
+            color: white;
+        }
+    }
+}
+
+
+

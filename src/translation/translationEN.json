@@ -1,0 +1,9 @@
+{
+    "titleForm" : "Login with VNDIRECT account" ,
+    "userName" :"Username" ,
+    "passWord" : "Password" ,
+    "btn1" : "LOG IN" ,
+    "btn2" : "REGISTRATION" ,
+    "forgotPassWord" : "Forgot Password" ,
+    "help" : "Help" 
+}
