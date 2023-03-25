@@ -29,9 +29,6 @@ const SignUp = () => {
       { imgType: "backsideImage", imgUrl: "" },
     ]
   });
-  const [image , setImage] = useState<string>("") ;
-
-  console.log(userData) ;
 
   const listSteps = [
     {
