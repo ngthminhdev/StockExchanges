@@ -56,7 +56,7 @@ const SignIn = () => {
            placeHolder={t("passWord")}
            type={'password'}
           />
-          <ButtonForm styles={{lineHeight:'24px'}} width="100%" height="auto" variant="primary" handleClickBtn={handleSubmitForm}>{t("btn1")}</ButtonForm>
+          <ButtonForm styles={{lineHeight:'24px'}} width="100%" height="auto" variant="primary">{t("btn1")}</ButtonForm>
           <Link to={'/register'} style={{width:'100%', textDecoration:'none'}}>
           <ButtonForm styles={{lineHeight:'24px'}} width="100%" height="auto" isDarkTheme={darkTheme} handleClickBtn={()=> {}} variant="second">{t("btn2")}</ButtonForm>
           </Link>

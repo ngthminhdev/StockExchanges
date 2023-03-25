@@ -1,8 +1,11 @@
 import React from 'react'
+import { PercentageAreaChart } from '../../components'
 
 const StockTable = () => {
   return (
-    <div>StockTable</div>
+    <div>
+      <PercentageAreaChart/>
+    </div>
   )
 }
 
