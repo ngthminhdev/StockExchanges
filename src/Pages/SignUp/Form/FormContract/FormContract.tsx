@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ButtonForm } from "../../../../components";
 import { AgreeIcon } from "../../../../components/icons";
+import { useCryptoGraphic } from "../../../../hook";
+import axios from "axios";
 import "./FormContract.styles.scss";
 
 interface Props {
@@ -19,10 +21,34 @@ const FormContract = ({ setActiveStep }: Props) => {
     formState: { errors },
   } = useForm<FormContract>();
 
-  console.log(errors);
-  const handleSubmitForm: SubmitHandler<FormContract> = async (data) => {
-    console.log(data);
+  const { deCode } =  useCryptoGraphic() ;
+
+  const handleSubmitForm: SubmitHandler<FormContract> = async () => {
+    const encodedString = localStorage.getItem("vnd-register-data");
+    if (encodedString) {
+      const data = deCode(JSON.parse(encodedString));
+      delete data.imageIdentity ;
+      delete data.rules ;
+      console.log(data) ;
+      try {
+        const request = await axios({
+          method : "POST" ,
+          url : `${process.env.REACT_APP_ENDPOINT}api/auth/register` ,
+          data : data ,
+        }) ;
+        console.log(request)
+      } catch (error) {
+        console.log(error)
+      }
+    }
   };
+
+  useEffect(() => {
+    const encodedString = localStorage.getItem("vnd-register-data");
+    if (encodedString) {
+      const data = deCode(JSON.parse(encodedString));
+    }
+  }, []);
 
   return (
     <form
@@ -91,6 +117,7 @@ const FormContract = ({ setActiveStep }: Props) => {
           styles={{
             margin: "32px 0 32px 20px",
           }}
+          type={"submit"}
         >
           Tiếp tục
         </ButtonForm>

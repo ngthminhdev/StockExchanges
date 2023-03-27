@@ -17,12 +17,12 @@ import { confirmBox } from "../../components/ConfirmBox";
 const SignUp = () => {
   const [activeStep, setActiveStep] = useState<number>(1);
   const [userData, setUserData] = useState<IUser>({
-    fullName: "",
-    userName: "",
-    phoneNumber: "",
+    username: "",
+    account_name: "",
+    phone: "",
     email: "",
     password: "",
-    repeatPassword: "",
+    confirm_password: "",
     rules: false,
     imageIdentity : [
       { imgType: "frontImage", imgUrl: "" },

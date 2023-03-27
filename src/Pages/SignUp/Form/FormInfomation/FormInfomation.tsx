@@ -23,21 +23,21 @@ const phoneRegExp =
 const schema = yup
   .object()
   .shape({
-    fullName: yup
+    username: yup
       .string()
       .required("Vui lòng nhập họ và tên")
       .min(4, "Vui lòng nhập tối thiểu 4 ký tự"),
-    userName: yup
+    account_name: yup
       .string()
       .required("Vui lòng nhập tên đăng nhập")
       .min(4, "Vui lòng nhập tối thiểu 4 ký tự"),
-    phoneNumber: yup
+    phone: yup
       .string()
       .required("Vui lòng nhập số điện thoại")
       .matches(phoneRegExp, "Số điện thoại không hợp lệ"),
     email: yup.string().required("Vui lòng nhập email").email("Email không hợp lệ"),
     password: yup.string().required("Vui lòng nhập mật khẩu").min(8,"Vui lòng nhập tối thiểu 8 ký tự"),
-    repeatPassword: yup.string().required("Vui lòng nhập mật khẩu nhập lại").min(8,"Vui lòng nhập tối thiểu 8 ký tự").oneOf([yup.ref("password")] , "Khác với mật khẩu đăng ký"),
+    confirm_password: yup.string().required("Vui lòng nhập mật khẩu nhập lại").min(8,"Vui lòng nhập tối thiểu 8 ký tự").oneOf([yup.ref("password")] , "Khác với mật khẩu đăng ký"),
     rules: yup.bool().oneOf([true], "Vui lòng bấm xác nhận"),
   })
   .required();
@@ -60,21 +60,21 @@ const FormInfomation = ({ setActiveStep, setUserData, userData }: Props) => {
     {
       tag: (
         <p className="error__Input--formInfomation">
-          {errors?.fullName?.message}
+          {errors?.username?.message}
         </p>
       ),
     },
     {
       tag: (
         <p className="error__Input--formInfomation">
-          {errors?.userName?.message}
+          {errors?.account_name?.message}
         </p>
       ),
     },
     {
       tag: (
         <p className="error__Input--formInfomation">
-          {errors?.phoneNumber?.message}
+          {errors?.phone?.message}
         </p>
       ),
     },
@@ -93,7 +93,7 @@ const FormInfomation = ({ setActiveStep, setUserData, userData }: Props) => {
     {
       tag: (
         <p className="error__Input--formInfomation">
-          {errors?.repeatPassword?.message}
+          {errors?.confirm_password?.message}
         </p>
       ),
     },
@@ -119,17 +119,17 @@ const FormInfomation = ({ setActiveStep, setUserData, userData }: Props) => {
   const inputFormMapping: inputFormMapping[] = [
     {
       label: "Họ và tên",
-      id: "fullName",
+      id: "username",
       type: "text",
     },
     {
       label: "Tên đăng nhập",
-      id: "userName",
+      id: "account_name",
       type: "text",
     },
     {
       label: "Số điện thoại",
-      id: "phoneNumber",
+      id: "phone",
       type: "tel",
     },
     {
@@ -144,7 +144,7 @@ const FormInfomation = ({ setActiveStep, setUserData, userData }: Props) => {
     },
     {
       label: "Nhập lại mật khẩu",
-      id: "repeatPassword",
+      id: "confirm_password",
       type: "password",
     },
   ];

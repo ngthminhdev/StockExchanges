@@ -5,13 +5,13 @@ import { EyeIcon } from '../icons';
 import "./InputForm.styles.scss"
 
 export interface IFormValues {
-  fullName  : string;
-  userName :string ;
-  phoneNumber: string;
-  email :string ,
-  password :string ,
-  repeatPassword :string ,
-  rules ?: boolean ,
+    username : string ,
+    account_name : string ,
+    phone : string ,
+    password : string ,
+    email : string ,
+    confirm_password:string ,
+    rules?:boolean ,
 }
 
 interface Props {

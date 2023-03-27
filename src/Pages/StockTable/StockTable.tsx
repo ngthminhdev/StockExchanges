@@ -3,8 +3,8 @@ import { PercentageAreaChart } from '../../components'
 
 const StockTable = () => {
   return (
-    <div>
-      <PercentageAreaChart/>
+    <div id='chart'>
+      <PercentageAreaChart />
     </div>
   )
 }

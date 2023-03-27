@@ -5,15 +5,18 @@ import CheckBoxLanguage from "./Header/CheckBoxLanguage/CheckBoxLanguage";
 import SettingTheme from "./Header/SettingTheme/SettingTheme";
 import { successMessage , errorMessage } from "../../components/Message";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { IFormValues } from "../../components/InputForm/InputForm";
+import { Link, useNavigate } from "react-router-dom";
 import "./SignIn.styles.scss";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { UserSlice } from "../../redux/User/User.slice";
+import { IUser } from "../../interface";
 
 const SignIn = () => {
-  const { register , handleSubmit } = useForm<IFormValues>() ;
   const [ darkTheme , setDarkTheme ] = useState<boolean>(false) ;
   const [ t , i18n ] = useTranslation() ;
+  const dispath = useDispatch() ;
+  const navigate = useNavigate() ;
 
   const handleChangeLangue = (e : React.ChangeEvent<HTMLInputElement>) => {
      if(e.target.checked) {
@@ -24,8 +27,27 @@ const SignIn = () => {
      }
   }
 
-  const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSetUser = ( user : IUser ) => {
+    dispath( UserSlice.actions.setUser( user) ) ;
+  }
+
+  const handleSubmitForm = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault() ;
+    const account_name = document.querySelector("#account_name") as HTMLFormElement ;
+    const password = document.querySelector("#password") as HTMLFormElement ;
+    try {
+      const request = await axios({
+        method : "POST" ,
+        url : `${process.env.REACT_APP_ENDPOINT}api/auth/login` ,
+        data : { account_name : account_name.value , password : password.value } ,
+      }) ;
+      console.log(request) ;
+      handleSetUser(request.data) ;
+      successMessage("Đăng nhập thành công") ;
+      navigate("/") ;
+    } catch (error : any) {
+      errorMessage(`${error.message}`) 
+    }
   }
   
   return (
@@ -50,11 +72,13 @@ const SignIn = () => {
            icon={<UserIcon/>}
            placeHolder={t("userName")}
            type={'text'} 
+           id={"account_name"}
           />
           <CustomeInput 
            icon={<LockIcon/>}
            placeHolder={t("passWord")}
            type={'password'}
+           id={"password"}
           />
           <ButtonForm styles={{lineHeight:'24px'}} width="100%" height="auto" variant="primary">{t("btn1")}</ButtonForm>
           <Link to={'/register'} style={{width:'100%', textDecoration:'none'}}>
@@ -71,3 +95,5 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+
