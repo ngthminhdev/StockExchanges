@@ -1,12 +1,12 @@
 import { ImageIdentity } from "../Pages/SignUp/Form/FormIdentityUpload/FormIdentityUpload";
 
 export interface IUser {
-    fullName : string ,
-    userName : string ,
-    phoneNumber : string ,
+    username : string ,
+    account_name : string ,
+    phone : string ,
     password : string ,
     email : string ,
-    repeatPassword?:string ,
+    confirm_password?:string ,
     rules?:boolean ,
-    imageIdentity : ImageIdentity[] ,
+    imageIdentity ?: ImageIdentity[] ,
 }

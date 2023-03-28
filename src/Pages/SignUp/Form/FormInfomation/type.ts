@@ -1,4 +1,4 @@
-export type labelInput = "fullName" | "userName" | "phoneNumber" | "email" | "password" | "repeatPassword" ;
+export type labelInput = "username" | "account_name" | "phone" | "email" | "password" | "confirm_password" ;
 export interface inputFormMapping {
     label : string ,
     id : labelInput ,

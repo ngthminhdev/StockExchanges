@@ -9,7 +9,7 @@ interface Props {
     id?:string ,
 }
 
-const CustomeInput = ( { icon , placeHolder , type , styles } : Props ) => {
+const CustomeInput = ( { icon , placeHolder , type , styles , id } : Props ) => {
   
   const [isShowPassWord , setIsShowPassWord] = useState<boolean>(false) ;
 
@@ -27,7 +27,8 @@ const CustomeInput = ( { icon , placeHolder , type , styles } : Props ) => {
       type={ ( type == "password" && isShowPassWord == true ) ? "text" : type } 
       placeholder={placeHolder} 
       style={{...styles}}
-      className="inputForm"
+      className="inputForm" 
+      id={id}
       />
       {
         type == "password" && 
