@@ -2,7 +2,7 @@
 
 cd /SERVICE
 
-yarn add global serve
+yarn global add serve
 
 serve -s -l 3002 build
 
