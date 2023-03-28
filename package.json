@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "electric-board-client",
+  "version": "0.0.01",
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^2.9.11",

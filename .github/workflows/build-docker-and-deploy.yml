@@ -52,7 +52,9 @@ jobs:
         file: ./docker/Dockerfile
         push: true
         tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_IMAGE}}:${{ steps.get_version.outputs.version }}
-        
+        build-args: |
+          REACT_APP_ENDPOINT=${{secrets.ENV_ENDPOINT}}
+
     - name: SSH Deploy
       uses: appleboy/ssh-action@v0.1.2
       with:
