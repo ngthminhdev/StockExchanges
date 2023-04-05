@@ -23,9 +23,9 @@ jobs:
       with:
         sonar-token: ${{ secrets.SONAR_TOKEN }}
         args: >
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          -Dsonar.projectName=
-          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+          -Dsonar.projectKey=ngthminhdev_StockExchanges
+          -Dsonar.projectName=StockExchanges
+          -Dsonar.organization=ngthminhdev
           -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
           -Dsonar.qualitygate.wait=true
