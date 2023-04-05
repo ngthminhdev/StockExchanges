@@ -30,13 +30,13 @@ const schema = yup
     account_name: yup
       .string()
       .required("Vui lòng nhập tên đăng nhập")
-      .min(4, "Vui lòng nhập tối thiểu 4 ký tự"),
+      .min(4, "Vui lòng nhập tối thiểu 4 ký tự").matches( /^\S+$/ ,"Tên đăng nhập không được có khoảng trắng"),
     phone: yup
       .string()
       .required("Vui lòng nhập số điện thoại")
       .matches(phoneRegExp, "Số điện thoại không hợp lệ"),
     email: yup.string().required("Vui lòng nhập email").email("Email không hợp lệ"),
-    password: yup.string().required("Vui lòng nhập mật khẩu").min(8,"Vui lòng nhập tối thiểu 8 ký tự"),
+    password: yup.string().required("Vui lòng nhập mật khẩu").min(8,"Vui lòng nhập tối thiểu 8 ký tự").matches( /^.*[a-z]+.*$/,"Phải có ít nhất 1 chữ cái thường").matches( /.*[A-Z]+.*$/,"Phải có ít nhất 1 chữ cái in hoa").matches( /^.*[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]+.*$/,"Phải có ít nhất 1 ký tự đặc biệt") ,
     confirm_password: yup.string().required("Vui lòng nhập mật khẩu nhập lại").min(8,"Vui lòng nhập tối thiểu 8 ký tự").oneOf([yup.ref("password")] , "Khác với mật khẩu đăng ký"),
     rules: yup.bool().oneOf([true], "Vui lòng bấm xác nhận"),
   })

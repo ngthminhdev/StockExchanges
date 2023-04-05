@@ -228,16 +228,16 @@ export const SettingIcon = () => (
     <path
       d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
       stroke="#646464"
-      stroke-width="1.5"
-      stroke-miterlimit="10"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
       d="M2 12.8804V11.1204C2 10.0804 2.85 9.22043 3.9 9.22043C5.71 9.22043 6.45 7.94042 5.54 6.37042C5.02 5.47042 5.33 4.30042 6.24 3.78042L7.97 2.79042C8.76 2.32042 9.78 2.60042 10.25 3.39042L10.36 3.58042C11.26 5.15042 12.74 5.15042 13.65 3.58042L13.76 3.39042C14.23 2.60042 15.25 2.32042 16.04 2.79042L17.77 3.78042C18.68 4.30042 18.99 5.47042 18.47 6.37042C17.56 7.94042 18.3 9.22043 20.11 9.22043C21.15 9.22043 22.01 10.0704 22.01 11.1204V12.8804C22.01 13.9204 21.16 14.7804 20.11 14.7804C18.3 14.7804 17.56 16.0604 18.47 17.6304C18.99 18.5404 18.68 19.7004 17.77 20.2204L16.04 21.2104C15.25 21.6804 14.23 21.4004 13.76 20.6104L13.65 20.4204C12.75 18.8504 11.27 18.8504 10.36 20.4204L10.25 20.6104C9.78 21.4004 8.76 21.6804 7.97 21.2104L6.24 20.2204C5.33 19.7004 5.02 18.5304 5.54 17.6304C6.45 16.0604 5.71 14.7804 3.9 14.7804C2.85 14.7804 2 13.9204 2 12.8804Z"
       stroke="#646464"
-      stroke-width="1.5"
-      stroke-miterlimit="10"
+      strokeWidth="1.5"
+      strokeMiterlimit="10"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
@@ -255,35 +255,35 @@ export const LockIcon = () => (
     <path
       d="M5 8.33268V6.66602C5 3.90768 5.83333 1.66602 10 1.66602C14.1667 1.66602 15 3.90768 15 6.66602V8.33268"
       stroke="#F7941D"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
       d="M14.1667 18.334H5.83333C2.5 18.334 1.66667 17.5007 1.66667 14.1673V12.5007C1.66667 9.16732 2.5 8.33398 5.83333 8.33398H14.1667C17.5 8.33398 18.3333 9.16732 18.3333 12.5007V14.1673C18.3333 17.5007 17.5 18.334 14.1667 18.334Z"
       stroke="#F7941D"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
       d="M13.3304 13.3327H13.3379"
       stroke="#F7941D"
-      stroke-width="2"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
       d="M9.99623 13.3327H10.0037"
       stroke="#F7941D"
-      stroke-width="2"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
     <path
       d="M6.66209 13.3327H6.66957"
       stroke="#F7941D"
-      stroke-width="2"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
@@ -291,7 +291,7 @@ export const LockIcon = () => (
 );
 
 export const UserIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xmlSpace="preserve">  <image id="image0" width="20" height="20" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAABGdBTUEAALGPC/xhBQAAACBjSFJN AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAgVBMVEUAAAD/jxD4lR72lB73 lB33kh35lRz3lBz2kh73lR70kh31kx73kxzzkxz2lB33lB33lR31kx33lR34kx32lBz2kxz4lB33 jxj3lB33jyD4lBz1kx32kx33lR32lR3/jyD3lyD0lRv0khv3kxz2lB72kx3vjyD2lB33kx73lB3/ //8ll1L+AAAAKXRSTlMAEG/P32B/v3B/YICAQO+/n6Dfr8+Q7yCfIM9Q72CvECAwYEBwrxCwgFCP mukAAAABYktHRCpTvtSeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5wIVCiUexfkdBQAA AJ9JREFUGNNtj+sSgiAUhLEotBA1L4gRVnbb93/BTGw6Mu2fHb6Zw+4y9lUUsVCrNcA3S7aFiGOB hLId9h+TSAkU3LvKCOS59+LwB5YVgXUz9dG8JdCoTo+sg6HxR4Wsgz0ti5paONmHk85pelkSnViM 4q0mw63Nr8MQF2huZPicahxmqnH/HTn4H1ra7qHqyasnzSz9/OpFofTzg8rj8w1xRQpQyahW2AAA ACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0yMVQwOTozNzozMCswMTowMPGc2wMAAAAldEVYdGRh dGU6bW9kaWZ5ADIwMjMtMDItMjFUMDk6Mzc6MzArMDE6MDCAwWO/AAAAAElFTkSuQmCC"/>
+  <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enableBackground="new 0 0 20 20" xmlSpace="preserve">  <image id="image0" width="20" height="20" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAABGdBTUEAALGPC/xhBQAAACBjSFJN AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAgVBMVEUAAAD/jxD4lR72lB73 lB33kh35lRz3lBz2kh73lR70kh31kx73kxzzkxz2lB33lB33lR31kx33lR34kx32lBz2kxz4lB33 jxj3lB33jyD4lBz1kx32kx33lR32lR3/jyD3lyD0lRv0khv3kxz2lB72kx3vjyD2lB33kx73lB3/ //8ll1L+AAAAKXRSTlMAEG/P32B/v3B/YICAQO+/n6Dfr8+Q7yCfIM9Q72CvECAwYEBwrxCwgFCP mukAAAABYktHRCpTvtSeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5wIVCiUexfkdBQAA AJ9JREFUGNNtj+sSgiAUhLEotBA1L4gRVnbb93/BTGw6Mu2fHb6Zw+4y9lUUsVCrNcA3S7aFiGOB hLId9h+TSAkU3LvKCOS59+LwB5YVgXUz9dG8JdCoTo+sg6HxR4Wsgz0ti5paONmHk85pelkSnViM 4q0mw63Nr8MQF2huZPicahxmqnH/HTn4H1ra7qHqyasnzSz9/OpFofTzg8rj8w1xRQpQyahW2AAA ACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wMi0yMVQwOTozNzozMCswMTowMPGc2wMAAAAldEVYdGRh dGU6bW9kaWZ5ADIwMjMtMDItMjFUMDk6Mzc6MzArMDE6MDCAwWO/AAAAAElFTkSuQmCC"/>
 </svg> 
 )
 

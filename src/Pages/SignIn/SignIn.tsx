@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LockIcon, LogoTextDark, LogoTextLight, UserIcon } from "../../components/icons";
 import { ButtonForm , CustomeInput, } from "../../components";
 import CheckBoxLanguage from "./Header/CheckBoxLanguage/CheckBoxLanguage";
@@ -8,14 +8,10 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignIn.styles.scss";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { UserSlice } from "../../redux/User/User.slice";
-import { IUser } from "../../interface";
 
 const SignIn = () => {
   const [ darkTheme , setDarkTheme ] = useState<boolean>(false) ;
   const [ t , i18n ] = useTranslation() ;
-  const dispath = useDispatch() ;
   const navigate = useNavigate() ;
 
   const handleChangeLangue = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -27,8 +23,8 @@ const SignIn = () => {
      }
   }
 
-  const handleSetUser = ( user : IUser ) => {
-    dispath( UserSlice.actions.setUser( user) ) ;
+  const saveAccesstoken = ( accesstoken : string ) => {
+    localStorage.setItem("access-token" , JSON.stringify(accesstoken) ) ;
   }
 
   const handleSubmitForm = async (e:React.FormEvent<HTMLFormElement>) => {
@@ -38,15 +34,15 @@ const SignIn = () => {
     try {
       const request = await axios({
         method : "POST" ,
-        url : `${process.env.REACT_APP_ENDPOINT}api/auth/login` ,
+        url : `api/auth/login` ,
         data : { account_name : account_name.value , password : password.value } ,
       }) ;
-      console.log(request) ;
-      handleSetUser(request.data) ;
+      saveAccesstoken(request.data.data.access_token) ;
       successMessage("Đăng nhập thành công") ;
       navigate("/") ;
     } catch (error : any) {
-      errorMessage(`${error.message}`) 
+      errorMessage(`${error.message}`) ;
+      console.log(error)
     }
   }
   

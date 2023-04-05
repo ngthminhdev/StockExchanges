@@ -5,6 +5,7 @@ import { AgreeIcon } from "../../../../components/icons";
 import { useCryptoGraphic } from "../../../../hook";
 import axios from "axios";
 import "./FormContract.styles.scss";
+import { errorMessage, successMessage } from "../../../../components/Message";
 
 interface Props {
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
@@ -33,12 +34,14 @@ const FormContract = ({ setActiveStep }: Props) => {
       try {
         const request = await axios({
           method : "POST" ,
-          url : `${process.env.REACT_APP_ENDPOINT}api/auth/register` ,
+          url : `api/auth/register` ,
           data : data ,
         }) ;
         console.log(request)
+        successMessage(request.data.message) ;
+        localStorage.removeItem("vnd-register-data") ;
       } catch (error) {
-        console.log(error)
+        errorMessage("Registration failed") ;
       }
     }
   };
