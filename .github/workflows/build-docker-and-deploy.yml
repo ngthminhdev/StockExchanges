@@ -1,5 +1,5 @@
 # .github/workflows/build-docker-and-deploy.yml
-name: Docker Stock Server
+name: Docker Stock Client
 
 on:
   push:
@@ -12,9 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
     steps:
-    - name: Build the Docker image
+    - name: Set up & Checkout
       uses: actions/checkout@v3
-    
+
+    - name: SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@master
+      with:
+        sonar-token: ${{ secrets.SONAR_TOKEN }}
+        args: >
+          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          -Dsonar.projectName=
+          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+          -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.qualitygate.wait=true
+
     - name: Get package version
       run: echo "::set-output name=version::$(cat package.json | jq -r '.version')"
       id: get_version

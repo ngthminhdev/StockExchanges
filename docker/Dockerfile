@@ -11,9 +11,9 @@ ENV REACT_APP_ENDPOINT=$REACT_APP_ENDPOINT
 
 RUN tar -xzf SERVICE.tgz --directory /SERVICE && rm SERVICE.tgz
 
-RUN chmod -R 777 /SERVICE
+RUN chmod -R 775 /SERVICE
 
-RUN chmod -R 777 /start.sh
+RUN chmod -R 775 /start.sh
 
 EXPOSE 3002
 
