@@ -1,108 +1,36 @@
-import { Series } from "highcharts";
 import { HighchartsReact } from "highcharts-react-official";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./PercentageAreaChart.styles.scss";
 
 const PercentageAreaChart = () => {
   var Highcharts = require("highcharts");
   const [hoveredValue, setHoveredValue] = useState(null);
-
+  const [data , setData] = useState([ [Date.UTC(2020 , 0 , 1, 9 ,15),0.5] ,[Date.UTC(2020 , 0 , 1, 9 ,16),0.6] ] ) ;
   // axis title , tick mark ( tickInterval , tickPixel ) , alignThresholds
   // tooltip : cái show ra khi hover vào 1 điểm bao gồm name và data ( splir chia tất cả các point và hiển thị )
   // crosshair : điểm gióng xuống trục x và y
   // tất cả text trong chart có thể được điều chỉnh với formatters và format option bắt đầu bằng dấu {  }
   // 2 số phần thập phân: "{point.y:.2f}"
-  const data = [...Array(345)].map((item, index) => index + 1);
-  const data1 = [...Array(345)].map((item, index) => index + 100);
-  const data2 = [...Array(345)].map((item, index) => index + 200);
+  //const data = [...Array(345)].map((item, index) => index + 1);
+  //const data1 = [...Array(345)].map((item, index) => index + 100);
+  //const data2 = [...Array(345)].map((item, index) => index + 200);
+  useEffect( () => {
+   let minute = 17 , hour = 9 , value = 0.5;
+   setInterval( () => {
+   const newData = [ Date.UTC(2020 , 0 , 1, hour ,minute), value ] ;
+   minute =  minute + 1 == 60 ? 0 : minute+1 ;
+   hour = minute + 1 == 1 ? hour + 1 : hour ;
+   value+=0.01 ;
+   setData ( prev => [...prev , newData ] ) ;
+   console.log(`[Date.UTC(2020 , 0 , 1, ${hour} ,${minute}),0.5]`)
+   } , 60000 )
+  } , [] ) ;
+
+  const data1 = data ;
+  const data2 = data ;
+  const data3 = data ;
+  
   const options = {
-    // chart: {
-    //   type: "area",
-    // },
-    // title: {
-    //   useHTML: true,
-    //   text: "Countries/regions with highest Gt CO<sub>2</sub>-emissions",
-    //   align: "left",
-    // },
-    // subtitle: {
-    //   text:
-    //     "Source: " +
-    //     '<a href="https://energiogklima.no/klimavakten/land-med-hoyest-utslipp/"' +
-    //     'target="_blank">Energi og Klima</a>',
-    //   align: "left",
-    // },
-    // accessibility: {
-    //   // point: {
-    //   //   valueDescriptionFormat:
-    //   //     "{index}. {point.category}, {point.y:,.1f} billions, {point.percentage:.1f}%.",
-    //   // },
-    // },
-    // legend: {
-    //   enabled: true,
-    //   labelFormatter: function () {
-    //     const hoveredPoint = hoveredValue?.find(
-    //       (point) => point.name === this.name
-    //     );
-    //     const valueString = hoveredPoint ? `: ${hoveredPoint.value}` : "";
-    //     return `${this.name}${valueString}`;
-    //   },
-    // },
-    // yAxis: {
-    //   labels: {
-    //     format: "{value}%",
-    //   },
-    //   title: {
-    //     enabled: false,
-    //   },
-    // },
-    // xAxis: {
-    //   crosshair: {
-    //     color: "red",
-    //   },
-    //   type: "datetime",
-    //   tickInterval: 114e4,
-    // },
-    // tooltip: {
-    //   pointFormat:
-    //     '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.1f} billion Gt)<br/>',
-    //   xDateFormat: "%H:%M",
-    //   split: true,
-    // },
-    // plotOptions: {
-    //   series: {
-    //     pointStart: Date.UTC(2020, 0, 1, 9, 15),
-    //     pointInterval: 6e4, // phút
-    //   },
-    //   area: {
-    //     stacking: "percent",
-    //     marker: {
-    //       enabled: false,
-    //     },
-    //   },
-    //   point: {
-    //     events: {
-    //       mouseOver: function () {
-    //         console.log(this);
-    //         const hoveredValues = [];
-    //         const xValue = this.x;
-    //         this.series.chart.series.forEach((series) => {
-    //           const point = series.data.find((point) => point.x === xValue);
-    //           if (point) {
-    //             hoveredValues.push({
-    //               name: series.name,
-    //               color: series.color,
-    //               value: point.y,
-    //             });
-    //           }
-    //         });
-    //         setHoveredValue(hoveredValues);
-    //       },
-    //       mouseOut: function () {
-    //         setHoveredValue(null);
-    //       },
-    //     },
-    //   },
-    // },
     accessibility: {
       enabled: false,
     },
@@ -122,8 +50,10 @@ const PercentageAreaChart = () => {
       },
     },
     xAxis: {
-      //categories: timeLine,
       tickmarkPlacement: "on",
+      min : Date.UTC(2020 , 0 , 1, 9 ,15) ,
+      max : Date.UTC( 2020 , 0, 1 ,15 , 0 ) ,
+      tickInterval : 19 * 60 * 1000 , 
       title: {
         enabled: true,
       },
@@ -137,7 +67,6 @@ const PercentageAreaChart = () => {
         width: 2,
       },
       type: "datetime",
-      tickInterval: 114e4,
     },
     yAxis: {
       title: {
@@ -189,8 +118,6 @@ const PercentageAreaChart = () => {
         },
       },
       series: {
-        pointStart: Date.UTC(2020, 0, 1, 9, 15),
-        pointInterval: 6e4, // phút
         tooltip: {
           headerFormat: "<span style='font-size: 10px'>{point.key}</span><br/>",
           pointFormat:
@@ -224,7 +151,7 @@ const PercentageAreaChart = () => {
     series: [
       {
         name: "Tăng giá",
-        data: data,
+        data: data1,
         color: "#5ab55c",
         // [
         //   2.5, 2.6, 2.7, 2.9, 3.1, 3.4, 3.5, 3.5, 3.4, 3.4, 3.4, 3.5, 3.9, 4.5,
@@ -234,12 +161,12 @@ const PercentageAreaChart = () => {
       },
       {
         name: "Đứng giá",
-        data: data1,
+        data: data2,
         color: "#fcda50",
       },
       {
         name: "Giảm giá",
-        data: data2,
+        data: data3,
         color: "#bc3a36",
       },
     ],

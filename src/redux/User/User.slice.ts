@@ -2,17 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IUser } from "../../interface";
 
 interface initialState {
-  user: IUser;
+  user: IUser | null;
 }
 
 const initialState: initialState = {
-  user: { 
-    account_name: "", 
-    username : "" ,
-    email: "", 
-    password: "" , 
-    phone : "" ,
-  },
+  user: null ,
 };
 
 export const UserSlice = createSlice({
